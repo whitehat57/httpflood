@@ -21,10 +21,10 @@ std::vector<std::string> acceptall = {
     "Accept-Language: en-US,en;q=0.5\r\nAccept-Encoding: gzip, deflate\r\n",
     "Accept: text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8\r\nAccept-Language: en-US,en;q=0.5\r\nAccept-Charset: iso-8859-1\r\nAccept-Encoding: gzip\r\n",
     "Accept: application/xml,application/xhtml+xml,text/html;q=0.9, text/plain;q=0.8,image/png,*/*;q=0.5\r\nAccept-Charset: iso-8859-1\r\n",
-    "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\nAccept-Encoding: br;q=1.0, gzip;q=0.8, *;q=0.1\r\nAccept-Language: utf-8, iso-8859-1;q=0.5, *;q=0.1\r\nAccept-Charse[...]
-    "Accept: image/jpeg, application/x-ms-application, image/gif, application/xaml+xml, image/pjpeg, application/x-ms-xbap, application/x-shockwave-flash, application/msword, */*\r\nAccept-Languag[...]
+    "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\nAccept-Encoding: br;q=1.0, gzip;q=0.8, *;q=0.1\r\nAccept-Language: utf-8, iso-8859-1;q=0.5, *;q=0.1\r\nAccept-Charset: iso-8859-1\r\n",
+    "Accept: image/jpeg, application/x-ms-application, image/gif, application/xaml+xml, image/pjpeg, application/x-ms-xbap, application/x-shockwave-flash, application/msword, */*\r\nAccept-Language: en-US,en;q=0.5\r\n",
     "Accept: text/html, application/xhtml+xml, image/jxr, */*\r\nAccept-Encoding: gzip\r\nAccept-Charset: utf-8, iso-8859-1;q=0.5\r\nAccept-Language: utf-8, iso-8859-1;q=0.5, *;q=0.1\r\n",
-    "Accept: text/html, application/xml;q=0.9, application/xhtml+xml, image/png, image/webp, image/jpeg, image/gif, image/x-xbitmap, */*;q=0.1\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en[...]
+    "Accept: text/html, application/xml;q=0.9, application/xhtml+xml, image/png, image/webp, image/jpeg, image/gif, image/x-xbitmap, */*;q=0.1\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.5\r\n",
     "Accept: text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8\r\nAccept-Language: en-US,en;q=0.5\r\n",
     "Accept-Charset: utf-8, iso-8859-1;q=0.5\r\nAccept-Language: utf-8, iso-8859-1;q=0.5, *;q=0.1\r\n",
     "Accept: text/html, application/xhtml+xml",
@@ -47,7 +47,7 @@ std::vector<std::string> referers = {
     "https://help.baidu.com/searchResult?keywords=",
     "https://steamcommunity.com/market/search?q=",
     "https://www.ted.com/search?q=",
-    "https://play.google.com/store/search?q=",
+    "https://play.google.com/store/search?q="
 };
 
 std::string getuseragent() {
@@ -64,7 +64,7 @@ std::string getuseragent() {
         "Googlebot/2.1 ( http://www.googlebot.com/bot.html)",
         "Googlebot-Image/1.0",
         "Googlebot-News",
-        "Googlebot-Video/1.0",
+        "Googlebot-Video/1.0"
     };
 
     static std::random_device rd;
@@ -151,14 +151,14 @@ int main(int argc, char *argv[]) {
     CURLU *urlp = curl_url();
     CURLUcode uc = curl_url_set(urlp, CURLUPART_URL, url.c_str(), 0);
     if(uc) {
-        std::cerr << "Error: " << curl_easy_strerror(uc) << std::endl;
+        std::cerr << "Error: " << curl_url_strerror(uc) << std::endl;
         return 1;
     }
 
     char *hostp;
     uc = curl_url_get(urlp, CURLUPART_HOST, &hostp, 0);
     if(uc) {
-        std::cerr << "Error: " << curl_easy_strerror(uc) << std::endl;
+        std::cerr << "Error: " << curl_url_strerror(uc) << std::endl;
         return 1;
     }
     host = hostp;
